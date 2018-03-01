@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Iteso Store</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="mac_title">Mac</string>
+    <string name="aw_title">Alienware</string>
+    <string name="lanix_title">Lanix</string>
+
+    <string name="mac_store">BestBuy</string>
+    <string name="aw_store">DELL</string>
+    <string name="lanix_store">Fry"'"s</string>
+
+    <string name="mac_phone">3316257985</string>
+    <string name="aw_phone">3306792476</string>
+    <string name="lanix_phone">3339712490</string>
+
+    <string name="mac_location">Zapopan</string>
+    <string name="aw_location">Guadalajara</string>
+    <string name="lanix_location">Tlaquepaque</string>
+</resources>
