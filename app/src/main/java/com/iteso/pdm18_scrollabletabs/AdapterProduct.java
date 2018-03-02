@@ -98,7 +98,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     }
 
     public void showToast(View v, final int position){
-        Toast.makeText(v.getContext(), products.get(position).toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(v.getContext(), products.get(position).toString(), Toast.LENGTH_LONG).show();
     }
 
     @Override

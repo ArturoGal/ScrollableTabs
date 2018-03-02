@@ -19,8 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
-
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
 
 import java.util.ArrayList;
@@ -97,68 +95,6 @@ public class ActivityMain extends AppCompatActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_activity_main, container, false);
-
-            RecyclerView recyclerView = rootView.findViewById(R.id.fragment_recycler_view);
-
-            recyclerView.setHasFixedSize(true);
-            // Use a linear layout manager
-            LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(mLayoutManager);
-
-            ArrayList<ItemProduct> products = new ArrayList<>();
-            products.add(new ItemProduct(getResources().getString(R.string.mac_title),
-                    getResources().getString(R.string.mac_store),
-                    getResources().getString(R.string.mac_phone),
-                    getResources().getString(R.string.mac_location),
-                    getResources().getDrawable(R.drawable.mac),
-                    getResources().getDrawable(R.drawable.bestbuy)));
-
-            products.add(new ItemProduct(getResources().getString(R.string.aw_title),
-                    getResources().getString(R.string.aw_store),
-                    getResources().getString(R.string.aw_phone),
-                    getResources().getString(R.string.aw_location),
-                    getResources().getDrawable(R.drawable.alienware),
-                    getResources().getDrawable(R.drawable.dell)));
-
-            products.add(new ItemProduct(getResources().getString(R.string.lanix_title),
-                    getResources().getString(R.string.lanix_store),
-                    getResources().getString(R.string.lanix_phone),
-                    getResources().getString(R.string.lanix_location),
-                    getResources().getDrawable(R.drawable.lanix),
-                    getResources().getDrawable(R.drawable.frys)));
-
-            AdapterProduct adapterProduct = new AdapterProduct(products);
-            recyclerView.setAdapter(adapterProduct);
-
-            return rootView;
-        }
-    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -172,10 +108,17 @@ public class ActivityMain extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
-        }
+            switch (position) {
+                case 0:
+                    return new FragmentTechnology();
+                case 1:
+                    return new FragmentHome();
+                case 2:
+                    return new FragmentElectronics();
+                default:
+                    return new FragmentTechnology();
+            }
+        };
 
         @Override
         public int getCount() {
