@@ -1,5 +1,7 @@
 package com.iteso.pdm18_scrollabletabs;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -31,6 +33,9 @@ public class ActivityMain extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    FragmentElectronics fragmentElectronics;
+    FragmentTechnology fragmentTechnology;
+    FragmentHome fragmentHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +54,6 @@ public class ActivityMain extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
     }
 
@@ -101,7 +97,10 @@ public class ActivityMain extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new FragmentTechnology();
+                    if (fragmentTechnology == null) {
+                        fragmentTechnology = new FragmentTechnology();
+                    }
+                    return fragmentTechnology;
                 case 1:
                     return new FragmentHome();
                 case 2:
@@ -109,7 +108,8 @@ public class ActivityMain extends AppCompatActivity {
                 default:
                     return new FragmentTechnology();
             }
-        };
+        }
+
 
         @Override
         public int getCount() {
@@ -127,4 +127,13 @@ public class ActivityMain extends AppCompatActivity {
             return null;
         }
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0 || requestCode == 1 || requestCode == 2) {
+            if (resultCode == Activity.RESULT_OK) {
+                fragmentTechnology.onActivityResult(requestCode, resultCode, data);
+            }
+        }
+    }
 }
+
